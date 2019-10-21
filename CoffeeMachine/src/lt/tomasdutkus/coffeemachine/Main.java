@@ -8,41 +8,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        CoffeeMachine myCoffeeMachine = new CoffeeMachine(1200, 540, 120, 9, 550);
+        CoffeeMachine myCoffeeMachine = new CoffeeMachine(400, 540, 120, 9, 550);
 
         CoffeeMachine.showMenu(myCoffeeMachine);
-        System.out.println("Write action (buy, fill, take): ");
-
-        switch (scanner.next()) {
-            case "buy":
-                System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappucino: ");
-                coffeeMenu(myCoffeeMachine, scanner.nextInt());
-                break;
-            case "fill":
-                System.out.println("Write how many ml of water do you want to add: ");
-                int water = scanner.nextInt();
-                System.out.println("Write how many ml of milk do you want to add: ");
-                int milk = scanner.nextInt();
-                System.out.println("Write how many grams of coffee beans do you want to add: ");
-                int beans = scanner.nextInt();
-                System.out.println("write how many disposable cups of coffee do you want to add: ");
-                int cups = scanner.nextInt();
-                myCoffeeMachine.setWater(myCoffeeMachine.getWater() + water);
-                myCoffeeMachine.setMilk(myCoffeeMachine.getMilk() + milk);
-                myCoffeeMachine.setCoffeeBeans(myCoffeeMachine.getCoffeeBeans() + beans);
-                myCoffeeMachine.setDisposableCups(myCoffeeMachine.getDisposableCups() + cups);
-                myCoffeeMachine.showMenu(myCoffeeMachine);
-                break;
-            case "take":
-                int money = myCoffeeMachine.getMoney();
-                myCoffeeMachine.setMoney(0);
-                System.out.println("\nI gave you $" + money + "\n");
-                myCoffeeMachine.showMenu(myCoffeeMachine);
-                break;
-            default:
-                System.out.println("Invalid input");
-                break;
-        }
+        coffeeMachineMenu(myCoffeeMachine);
 
         System.out.println("Write how many cups you will need: ");
         calcIngredients(scanner.nextInt());
@@ -81,39 +50,111 @@ public class Main {
         }
     }
 
-    private static void coffeeMenu(CoffeeMachine myCoffeeMachine, int choice) {
+    private static void coffeeMenu(CoffeeMachine myCoffeeMachine, String choice) {
         switch (choice) {
-            case 1:
+            case "1":
                 if (myCoffeeMachine.getWater() >= 250 && myCoffeeMachine.getCoffeeBeans() >= 16) {
                     myCoffeeMachine.setWater(myCoffeeMachine.getWater() - 250);
                     myCoffeeMachine.setCoffeeBeans(myCoffeeMachine.getCoffeeBeans() - 16);
-                    myCoffeeMachine.setDisposableCups(myCoffeeMachine.getDisposableCups() -1);
+                    myCoffeeMachine.setDisposableCups(myCoffeeMachine.getDisposableCups() - 1);
                     myCoffeeMachine.setMoney(myCoffeeMachine.getMoney() + 4);
-                    CoffeeMachine.showMenu(myCoffeeMachine);
+                    System.out.println("I have enough resources, making you a coffee!");
+                    coffeeMachineMenu(myCoffeeMachine);
+                } else if (myCoffeeMachine.getWater() < 250) {
+                    System.out.println("Sorry, not enough water!");
+                    coffeeMachineMenu(myCoffeeMachine);
+                } else if (myCoffeeMachine.getCoffeeBeans() < 16) {
+                    System.out.println("Sorry, not enough beans!");
+                    coffeeMachineMenu(myCoffeeMachine);
                 }
                 break;
-            case 2:
+            case "2":
                 if (myCoffeeMachine.getWater() >= 350 && myCoffeeMachine.getMilk() >= 75 && myCoffeeMachine.getCoffeeBeans() >= 20) {
                     myCoffeeMachine.setWater(myCoffeeMachine.getWater() - 350);
                     myCoffeeMachine.setMilk(myCoffeeMachine.getMilk() - 75);
                     myCoffeeMachine.setCoffeeBeans(myCoffeeMachine.getCoffeeBeans() - 20);
-                    myCoffeeMachine.setDisposableCups(myCoffeeMachine.getDisposableCups() -1);
+                    myCoffeeMachine.setDisposableCups(myCoffeeMachine.getDisposableCups() - 1);
                     myCoffeeMachine.setMoney(myCoffeeMachine.getMoney() + 7);
-                    CoffeeMachine.showMenu(myCoffeeMachine);
+                    System.out.println("I have enough resources, making you a coffee!");
+                    coffeeMachineMenu(myCoffeeMachine);
+                } else if (myCoffeeMachine.getWater() < 350) {
+                    System.out.println("Sorry, not enough water!");
+                    coffeeMachineMenu(myCoffeeMachine);
+                } else if (myCoffeeMachine.getMilk() < 75) {
+                    System.out.println("Sorry, not enough milk!");
+                    coffeeMachineMenu(myCoffeeMachine);
+                } else if (myCoffeeMachine.getCoffeeBeans() < 20) {
+                    System.out.println("Sorry, not enough beans!");
+                    coffeeMachineMenu(myCoffeeMachine);
                 }
                 break;
-            case 3:
+            case "3":
                 if (myCoffeeMachine.getWater() >= 200 && myCoffeeMachine.getMilk() >= 100 && myCoffeeMachine.getCoffeeBeans() >= 12) {
                     myCoffeeMachine.setWater(myCoffeeMachine.getWater() - 200);
                     myCoffeeMachine.setMilk(myCoffeeMachine.getMilk() - 100);
                     myCoffeeMachine.setCoffeeBeans(myCoffeeMachine.getCoffeeBeans() - 12);
-                    myCoffeeMachine.setDisposableCups(myCoffeeMachine.getDisposableCups() -1);
+                    myCoffeeMachine.setDisposableCups(myCoffeeMachine.getDisposableCups() - 1);
                     myCoffeeMachine.setMoney(myCoffeeMachine.getMoney() + 6);
-                    CoffeeMachine.showMenu(myCoffeeMachine);
+                    System.out.println("I have enough resources, making you a coffee!");
+                    coffeeMachineMenu(myCoffeeMachine);
+                } else if (myCoffeeMachine.getWater() < 200) {
+                    System.out.println("Sorry, not enough water!");
+                    coffeeMachineMenu(myCoffeeMachine);
+                } else if (myCoffeeMachine.getMilk() < 100) {
+                    System.out.println("Sorry, not enough milk!");
+                    coffeeMachineMenu(myCoffeeMachine);
+                } else if (myCoffeeMachine.getCoffeeBeans() < 12) {
+                    System.out.println("Sorry, not enough beans!");
+                    coffeeMachineMenu(myCoffeeMachine);
                 }
+                break;
+            case "back":
+                coffeeMachineMenu(myCoffeeMachine);
                 break;
             default:
                 System.out.println("Invalid input");
+                coffeeMachineMenu(myCoffeeMachine);
+                break;
+        }
+    }
+
+    private static void coffeeMachineMenu(CoffeeMachine myCoffeeMachine) {
+        System.out.println("Write action (buy, fill, take, remaining, exit): ");
+        switch (scanner.next()) {
+            case "buy":
+                System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappucino, back - to main menu: ");
+                coffeeMenu(myCoffeeMachine, scanner.next());
+                break;
+            case "fill":
+                System.out.println("Write how many ml of water do you want to add: ");
+                int water = scanner.nextInt();
+                System.out.println("Write how many ml of milk do you want to add: ");
+                int milk = scanner.nextInt();
+                System.out.println("Write how many grams of coffee beans do you want to add: ");
+                int beans = scanner.nextInt();
+                System.out.println("write how many disposable cups of coffee do you want to add: ");
+                int cups = scanner.nextInt();
+                myCoffeeMachine.setWater(myCoffeeMachine.getWater() + water);
+                myCoffeeMachine.setMilk(myCoffeeMachine.getMilk() + milk);
+                myCoffeeMachine.setCoffeeBeans(myCoffeeMachine.getCoffeeBeans() + beans);
+                myCoffeeMachine.setDisposableCups(myCoffeeMachine.getDisposableCups() + cups);
+                coffeeMachineMenu(myCoffeeMachine);
+                break;
+            case "take":
+                int money = myCoffeeMachine.getMoney();
+                myCoffeeMachine.setMoney(0);
+                System.out.println("\nI gave you $" + money + "\n");
+                coffeeMachineMenu(myCoffeeMachine);
+                break;
+            case "remaining":
+                myCoffeeMachine.showMenu(myCoffeeMachine);
+                coffeeMachineMenu(myCoffeeMachine);
+                break;
+            case "exit":
+                break;
+            default:
+                System.out.println("Invalid input");
+                coffeeMachineMenu(myCoffeeMachine);
                 break;
         }
     }
