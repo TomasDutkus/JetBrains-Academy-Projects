@@ -13,14 +13,14 @@ public class Main {
         CoffeeMachine.showMenu(myCoffeeMachine);
         coffeeMachineMenu(myCoffeeMachine);
 
-        System.out.println("Write how many cups you will need: ");
+ /*       System.out.println("Write how many cups you will need: ");
         calcIngredients(scanner.nextInt());
         System.out.println("Write how many ml of water the coffee machine has: ");
-        makeCoffee();
+        makeCoffee(); */
 
     }
 
-    private static void calcIngredients(int input) {
+ /*   private static void calcIngredients(int input) {
         System.out.println("For " + input + " cups of coffee you will need:\n" +
                 input * 200 + " ml of water\n" +
                 input * 50 + " ml of milk\n" +
@@ -48,7 +48,7 @@ public class Main {
         } else if (!can) {
             System.out.println("No, I can make only " + cant + " cup(s) of coffee");
         }
-    }
+    } */
 
     private static void coffeeMenu(CoffeeMachine myCoffeeMachine, String choice) {
         switch (choice) {
